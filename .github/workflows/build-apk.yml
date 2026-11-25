@@ -27,16 +27,16 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Build ARM64 debug APK
+      - name: Build installable debug APK
         working-directory: source/Tai-Video-Local-2.0.0-alpha.6
         run: |
           chmod +x gradlew
-          ./gradlew assembleDebug --stacktrace
+          ./gradlew assembleGenericDebug --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Tai-Video-Local-v2.0.0-alpha.6-arm64
-          path: source/Tai-Video-Local-2.0.0-alpha.6/app/build/outputs/apk/**/*arm64*.apk
+          name: Tai-Video-Local-v2.0.0-alpha.6
+          path: source/Tai-Video-Local-2.0.0-alpha.6/app/build/outputs/apk/generic/debug/*.apk
           if-no-files-found: error
           retention-days: 30
